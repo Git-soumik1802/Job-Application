@@ -1,0 +1,20 @@
+{
+  "name": "job-application-full-stack",
+  "version": "1.0.0",
+  "private": true,
+
+  "scripts": {
+
+    "dev:server": "cd backend && npm run dev",
+
+    "dev:client": "cd frontend && npm run dev",
+
+    "dev:seed": "cd backend && node seed.js",
+
+    "dev": "concurrently \"npm run dev:seed\" \"npm run dev:server\" \"npm run dev:client\""
+  },
+
+  "dependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
