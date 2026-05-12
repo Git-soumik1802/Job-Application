@@ -30,7 +30,7 @@ app.use(express.urlencoded({
 app.use(cookieParser());
 
 app.use(cors({
-    origin: "http://localhost:8000",
+    origin: process.env.CLIENT_URL,
     credentials: true
 }));
 
