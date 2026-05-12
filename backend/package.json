@@ -5,10 +5,11 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-  "dev": "nodemon index.js",
+      "dev": "nodemon index.js",
   "start": "node index.js",
-"seed": "node seed.js"
-},
+  "seed": "node seed.js"
+
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
