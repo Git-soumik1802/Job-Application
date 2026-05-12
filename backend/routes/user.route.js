@@ -16,7 +16,6 @@ const router = express.Router();
 // ================= REGISTER =================
 router.post(
     "/register",
-    singleUpload,
     register
 );
 

@@ -4,14 +4,15 @@
   "private": true,
 
   "scripts": {
-
     "dev:server": "cd backend && npm run dev",
 
     "dev:client": "cd frontend && npm run dev",
 
-    "dev:seed": "cd backend && node seed.js",
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
 
-    "dev": "concurrently \"npm run dev:seed\" \"npm run dev:server\" \"npm run dev:client\""
+    "build": "cd frontend && npm install && npm run build",
+
+    "start": "cd backend && npm run dev"
   },
 
   "dependencies": {

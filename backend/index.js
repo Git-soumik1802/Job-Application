@@ -2,6 +2,7 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import dotenv from "dotenv";
+import path from "path";
 
 import connectDB from "./utils/db.js";
 
@@ -13,6 +14,8 @@ import applicationRoute from "./routes/application.route.js";
 dotenv.config();
 
 const app = express();
+
+const __dirname = path.resolve();
 
 // ================= DATABASE =================
 connectDB();
@@ -27,7 +30,7 @@ app.use(express.urlencoded({
 app.use(cookieParser());
 
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: "http://localhost:8000",
     credentials: true
 }));
 
@@ -40,13 +43,24 @@ app.use("/api/v1/job", jobRoute);
 
 app.use("/api/v1/application", applicationRoute);
 
-// ================= TEST ROUTE =================
-app.get("/", (req, res) => {
-    res.send("Backend Working Successfully");
+// ================= FRONTEND =================
+app.use(
+    express.static(
+        path.join(__dirname, "../frontend/dist")
+    )
+);
+
+app.get("*", (req, res) => {
+    res.sendFile(
+        path.join(
+            __dirname,
+            "../frontend/dist/index.html"
+        )
+    );
 });
 
 // ================= SERVER =================
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 
 app.listen(PORT, () => {
     console.log(`Server running at port ${PORT}`);
